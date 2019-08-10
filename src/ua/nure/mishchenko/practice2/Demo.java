@@ -1,7 +1,6 @@
 package ua.nure.mishchenko.practice2;
 
 import java.util.Iterator;
-import java.util.function.Predicate;
 
 public class Demo {
     public static void main(String[] args) {
@@ -55,10 +54,16 @@ public class Demo {
         }
         /*entityList.forEach(System.out::println);*/
 
-        Iterator it = entityList.iterator(x -> x.getId() < 3 && x.getAge() < 22);
+        System.out.println("== Iterator with predicate ==");
+        System.out.println();
+        Iterator it = entityList.iterator(x -> x.getId() > 4 && x.getAge() < 26);
         while (it.hasNext()){
             System.out.println(it.next());
         }
+        System.out.println();
+        System.out.println("== Iterator ==");
+        System.out.println();
+        entityList.forEach(System.out::println);
 
 /*        // AA2
         for (Object el : list) {

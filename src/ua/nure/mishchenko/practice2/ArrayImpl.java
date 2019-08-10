@@ -168,31 +168,32 @@ public class ArrayImpl implements Array {
 
     @Override
     public Iterator iterator(Predicate<Entity> predicate) {
+
         return new FilterIterator(this.iterator(), predicate);
     }
 
- /*   public Iterator<Object> iterator(Predicate<Object> predicate) {
-        return new IteratorImpl(this.iterator(), predicate);
-    }*/
+    public Iterator<Entity> iterator(Object o){
+        return new Iterator<Entity>() {
+            @Override
+            public boolean hasNext() {
+                return false;
+            }
+
+            @Override
+            public Entity next() {
+                return null;
+            }
+        };
+    }
 
 
 
-    private class IteratorImpl extends FilterIterator<Object> implements Iterator<Object> {
+    private class IteratorImpl implements Iterator<Object> {
         private static final int ZERO = 0;
         private int cursor;
         private boolean condition;
 
         IteratorImpl() {
-            cursor = ZERO;
-        }
-
-        IteratorImpl(Iterator<Object> iterator) {
-            super();
-            cursor = ZERO;
-        }
-
-        IteratorImpl(Iterator<Object> iterator, Predicate<Entity> predicate) {
-            super();
             cursor = ZERO;
         }
 
