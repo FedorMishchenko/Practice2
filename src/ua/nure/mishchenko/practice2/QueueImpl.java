@@ -2,6 +2,7 @@ package ua.nure.mishchenko.practice2;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.function.Predicate;
 
 public class QueueImpl implements Queue {
     private static final int ZERO = 0;
@@ -79,6 +80,11 @@ public class QueueImpl implements Queue {
     @Override
     public Iterator<Object> iterator() {
         return new IteratorImpl();
+    }
+
+    @Override
+    public Iterator iterator(Predicate<Entity> isPositive) {
+        return null;
     }
 
     private class IteratorImpl implements Iterator<Object> {

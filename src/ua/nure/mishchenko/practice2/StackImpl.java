@@ -2,6 +2,7 @@ package ua.nure.mishchenko.practice2;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.function.Predicate;
 
 public class StackImpl implements Stack {
     private int size;
@@ -92,6 +93,11 @@ public class StackImpl implements Stack {
     @Override
     public Iterator<Object> iterator() {
         return new IteratorImpl();
+    }
+
+    @Override
+    public Iterator iterator(Predicate<Entity> isPositive) {
+        return null;
     }
 
     private class IteratorImpl implements Iterator<Object>{

@@ -2,6 +2,7 @@ package ua.nure.mishchenko.practice2;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.function.Predicate;
 
 public class ArrayImpl implements Array {
     private Object[] array;
@@ -165,12 +166,33 @@ public class ArrayImpl implements Array {
         return new IteratorImpl();
     }
 
-    private class IteratorImpl implements Iterator<Object> {
+    @Override
+    public Iterator iterator(Predicate<Entity> predicate) {
+        return new FilterIterator(this.iterator(), predicate);
+    }
+
+ /*   public Iterator<Object> iterator(Predicate<Object> predicate) {
+        return new IteratorImpl(this.iterator(), predicate);
+    }*/
+
+
+
+    private class IteratorImpl extends FilterIterator<Object> implements Iterator<Object> {
         private static final int ZERO = 0;
         private int cursor;
         private boolean condition;
 
         IteratorImpl() {
+            cursor = ZERO;
+        }
+
+        IteratorImpl(Iterator<Object> iterator) {
+            super();
+            cursor = ZERO;
+        }
+
+        IteratorImpl(Iterator<Object> iterator, Predicate<Entity> predicate) {
+            super();
             cursor = ZERO;
         }
 

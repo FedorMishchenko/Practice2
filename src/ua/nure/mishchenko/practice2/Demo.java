@@ -1,6 +1,7 @@
 package ua.nure.mishchenko.practice2;
 
 import java.util.Iterator;
+import java.util.function.Predicate;
 
 public class Demo {
     public static void main(String[] args) {
@@ -34,7 +35,32 @@ public class Demo {
         list.remove(1);
         System.out.println(list);
 
-        // AA2
+        System.out.println("==============TEST=================");
+        list = new ArrayImpl();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+
+
+
+        list.forEach(System.out::println);
+
+        Array entityList =  new ArrayImpl();
+        for(int i = 1; i < 6; i++) {
+            Entity e = new Entity();
+            e.setId(i);
+            e.setAge(20 + i);
+            entityList.add(e);
+        }
+        /*entityList.forEach(System.out::println);*/
+
+        Iterator it = entityList.iterator(x -> x.getId() < 3 && x.getAge() < 22);
+        while (it.hasNext()){
+            System.out.println(it.next());
+        }
+
+/*        // AA2
         for (Object el : list) {
             System.out.print(el);
         }
@@ -46,8 +72,14 @@ public class Demo {
         list.add(3);
         list.add(4);
 
-        // 1 2 3 4
+
         Iterator<Object> it = list.iterator();
+        while (it.hasNext()) {
+            System.out.print(it.next() + ", ");
+        }
+
+        // 1 2 3 4
+        it = list.iterator();
         while (it.hasNext()) {
             System.out.print(it.next() + ", ");
         }
@@ -314,6 +346,6 @@ public class Demo {
             it4.remove();
         }catch (IllegalStateException e){
             System.out.println("exception");
-        }
+        }*/
     }
 }
